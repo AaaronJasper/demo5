@@ -23,9 +23,12 @@ Route::post('register', [\App\Http\Controllers\RegisterController::class,'store'
 //登陸路由
 Route::post('login', [\App\Http\Controllers\LoginController::class,'login']);
 Route::get("logintest",[\App\Http\Controllers\LoginController::class,'logintest']);
-Route::delete("logout",[\App\Http\Controllers\LoginController::class,'logout']);
+Route::middleware("user_login")->delete("logout",[\App\Http\Controllers\LoginController::class,'logout']);
 //用戶列表(只用index和show方法)
 Route::apiResource('users', \App\Http\Controllers\UserController::class,["only" => ["index", "show"]]);
 //測試路由
 Route::get("test",[\App\Http\Controllers\TestController::class,'index']);
+Route::post("test",[\App\Http\Controllers\TestController::class,'index1']
+);
+
 

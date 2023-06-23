@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 
@@ -23,7 +23,7 @@ class RegisterController extends BaseController
         //$user=User::create($request->toArray());
 
         //存入cache
-        Cache::put("user_data", [
+        Session::put("user_data", [
             "name" => $user->name,
             "email" => $user->email
         ]);

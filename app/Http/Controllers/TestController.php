@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 class TestController extends BaseController
 {
@@ -28,6 +29,15 @@ class TestController extends BaseController
             })->get();
 
         Cache::put('key', $users, $seconds = 30);
-        return $this->same([$users], "查詢成功");
+        return $this->same(200, "查詢成功", [$users]);
+    }
+    public function index1(Request $request){
+        Session::put('name',2222);
+        Session::put("user",3333);
+        return Session::get('user_data');
+
+        $data=$request->input();
+        $request->session()->put("user_id",$data["name"]);
+        return session(('user_id'));
     }
 }
