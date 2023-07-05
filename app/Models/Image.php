@@ -5,12 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class products extends Model
+class Image extends Model
 {
     use HasFactory;
 
-    public function image()
+    protected $fillable = [
+        'picture'
+    ];
+
+    public function imageable()
     {
-        return $this->morphOne(Image::class, "imageable");
+        return $this->morphTo();
     }
 }

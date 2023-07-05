@@ -25,10 +25,13 @@ Route::post('login', [\App\Http\Controllers\LoginController::class, 'login']);
 Route::get("logintest", [\App\Http\Controllers\LoginController::class, 'logintest']);
 Route::middleware("user_login")->delete("logout", [\App\Http\Controllers\LoginController::class, 'logout']);
 //用戶列表
-Route::apiResource('users', \App\Http\Controllers\UserController::class, ["except" => ["update"]]);
+Route::apiResource('users', \App\Http\Controllers\UserController::class, ["except" => "update"]);
+//圖片路由
+Route::put("user/{id}", [\App\Http\Controllers\ImageController::class, 'userUpdateFile']);
+Route::put("product/{id}", [\App\Http\Controllers\ImageController::class, 'productUpdateFile']);
 //商品路由
 Route::apiResource('product', \App\Http\Controllers\ProductController::class);
-
 //測試路由
-Route::get("test.{id}", [\App\Http\Controllers\TestController::class, 'index']);
+Route::get("test/{id}", [\App\Http\Controllers\TestController::class, 'index']);
+
 

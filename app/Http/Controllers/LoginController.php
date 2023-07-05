@@ -25,7 +25,7 @@ class LoginController extends BaseController
         //檢查是不是黑名單
         if($user->is_locked==1){
             $user = new UserResource($user);
-            return $this->same([$user], "登錄失敗", 404);
+            return $this->same(404,[$user], "登錄失敗");
         }
         if (password_verify($password, $user->password)) {
             Session::put("user_data", [
@@ -35,10 +35,10 @@ class LoginController extends BaseController
                 "is_locked" => $user->is_locked
             ]);
             $user = new UserResource($user);
-            return $this->same([$user], "登錄成功", 200);
+            return $this->same(200,[$user], "登錄成功");
         } else {
             $user = new UserResource($user);
-            return $this->same([$user], "登錄失敗", 404);
+            return $this->same(404,[$user], "登錄失敗");
         }
     }
 
