@@ -10,22 +10,34 @@ use App\Models\User;
 
 class RegisterController extends BaseController
 {
+    private $LoginController ;
+    public function __construct(LoginController $LoginController)
+    {
+        $this->LoginController=$LoginController;
+    }
+
     public function store(RegisterRequest $request)
     {
+        if (Session::has('user_data')) {
+            return $this->LoginController->logintest();
+        }
         //輸入用戶註冊資料
         $user = new User();
         $user->name = $request->input("name");
         $user->email = $request->input("email");
         //將密碼進行加密
-        $user->password = bcrypt($request->input("password"));
+        $user->password = password_hash($request->input("password"), PASSWORD_DEFAULT);
         $user->save();
         //另一個輸入註冊資料的方法(密碼無加密)
         //$user=User::create($request->toArray());
 
-        //存入cache
+        //存入session
         Session::put("user_data", [
+            "id"=>$user->id,
             "name" => $user->name,
-            "email" => $user->email
+            "email" => $user->email,
+            "is_locked" => $user->is_locked
+            
         ]);
         return $this->same([$user], "註冊成功", 201);
     }

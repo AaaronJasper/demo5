@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //帳號對權限進行多對多連接
+    public function permissions(){
+        return $this->belongsToMany(Permission::class);
+    }
 }

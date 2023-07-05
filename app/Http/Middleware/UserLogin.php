@@ -16,9 +16,13 @@ class userlogin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Session::has('user_data')) {
+        if (!Session::has('user_data') ) {
             return redirect('/api/logintest');
         }
+        /* $user=Session::get('user_data');
+        if($user["is_locked"]==1){
+            return redirect('/api/logintest');
+        } */
 
         return $next($request);
     }
