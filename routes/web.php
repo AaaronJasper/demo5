@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//有頁面的路由
+Route::get("reset_password/{token}",function(){
+    return view("resetPassword");
+})->name("reset_password");
