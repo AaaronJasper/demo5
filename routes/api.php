@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //註冊路由
 Route::post('register', [\App\Http\Controllers\RegisterController::class, 'store']);
+Route::get('register/{token}', [\App\Http\Controllers\RegisterController::class, 'verify'])->name("register");
 //登陸路由
 Route::post('login', [\App\Http\Controllers\LoginController::class, 'login']);
 Route::get("logintest", [\App\Http\Controllers\LoginController::class, 'logintest']);

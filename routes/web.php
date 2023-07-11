@@ -19,5 +19,5 @@ Route::get('/', function () {
 
 //有頁面的路由
 Route::get("reset_password/{token}",function(){
-    return view("resetPassword");
+    return view("Success");
 })->name("reset_password");
