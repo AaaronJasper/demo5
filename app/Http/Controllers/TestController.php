@@ -12,6 +12,7 @@ class TestController extends BaseController
 {
     public function index(Request $request)
     {
+        return $request->id;
         $user=User::find($request->id);
         return $user->image;
         return $user->permissions;
