@@ -37,7 +37,7 @@ Route::apiResource('product', \App\Http\Controllers\ProductController::class);
 Route::post("forget_password",[ForgetPasswordController::class,"forget_password"]);
 Route::post("reset_password/{token}",[ForgetPasswordController::class,"reset_password"]);
 //測試路由
-Route::get("test/{id}", [\App\Http\Controllers\TestController::class, 'index']);
+Route::get("test", [\App\Http\Controllers\TestController::class, 'index']);
 
 
 

@@ -12,9 +12,12 @@ class TestController extends BaseController
 {
     public function index(Request $request)
     {
-        return $request->id;
-        $user=User::find($request->id);
-        return $user->image;
-        return $user->permissions;
+        $user = new User();
+        $user->name = $request->input("name");
+        $user->email = $request->input("email");
+        //將密碼進行加密
+        $user->password = password_hash($request->input("password"), PASSWORD_DEFAULT);
+        $user->save();
+        return $user;
     }  
 }
