@@ -38,6 +38,7 @@ Route::post("forget_password",[ForgetPasswordController::class,"forget_password"
 Route::post("reset_password/{token}",[ForgetPasswordController::class,"reset_password"]);
 //測試路由
 Route::get("test", [\App\Http\Controllers\TestController::class, 'index']);
+Route::get("testt", [\App\Http\Controllers\TestController::class, 'test']);
 
 
 

@@ -20,4 +20,7 @@ class TestController extends BaseController
         $user->save();
         return $user;
     }  
+    public function test(){
+        return "Hello zyii_ !!";
+    }
 }
