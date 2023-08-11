@@ -43,11 +43,13 @@ class User extends Authenticatable
     ];
 
     //帳號對權限進行多對多連接
+    //function其名稱對應其屬性 ex:$user->permissions
     public function permissions()
     {
         return $this->belongsToMany(Permission::class);
     }
     //用戶對image進行多型態一對一連接(第二個參數對應名稱)
+    //function其名稱對應其屬性 ex:$user->image
     public function image()
     {
         return $this->morphOne(Image::class, "imageable");

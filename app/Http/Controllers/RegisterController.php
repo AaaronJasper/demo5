@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\UserRegister;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\RegisterRequest;
@@ -31,12 +31,15 @@ class RegisterController extends BaseController
         //將密碼進行加密
         $user->password = password_hash($request->input("password"), PASSWORD_DEFAULT);
         $user->save();
+        //給登入token
+        //$usertoken = Str::random(64);
         //存入session
         Session::put("user_data", [
             "id" => $user->id,
             "name" => $user->name,
             "email" => $user->email,
-            "is_locked" => $user->is_locked
+            "is_locked" => $user->is_locked,
+            //"token" => $usertoken
         ]);
         //發送驗證信
         event(new UserRegister($request->input("email")));
@@ -49,7 +52,7 @@ class RegisterController extends BaseController
         $registerUser = DB::table("register_token")->where([
             "token" => $token,
         ])->first();
-        if(!$registerUser){
+        if (!$registerUser) {
             return "已註冊";
         }
         //用戶加上驗證時間
