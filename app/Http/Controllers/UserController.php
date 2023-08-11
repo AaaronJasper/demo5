@@ -41,11 +41,11 @@ class UserController extends BaseController
     /**
      * 顯示單一用戶數據
      */
-    public function show(string $id)
+    public function show(string $id) 
     {
         $user = User::find($id);
         $user=new UserResource($user);
-        return $this->same(200, "查詢成功",[$user]);
+        return $this->same(200, "success",[$user]);
     }
 
     /**

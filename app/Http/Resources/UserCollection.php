@@ -12,7 +12,7 @@ class UserCollection extends ResourceCollection
      *
      * @return array<int|string, mixed>
      */
-    public function toArray(Request $request)
+    public function toArray($request)
     {   
         //返回多個數據用此
         return [
