@@ -12,7 +12,7 @@ class UserResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-    public function toArray(Request $request)
+    public function toArray($request)
     {   
         //返回單一數據用此
         return [
